@@ -36,41 +36,28 @@
       <div class="card-panel">
         <div class="row">
           <div class="col s12 center">
-            <h3 class="b-orange-text">Envío de encuestas</h3>
+            <h3 class="b-orange-text">Consumo de servicio</h3>
           </div>
-          <div class="col s12">
-            <p class="p-blue-text flow-text">Seleccione el nombre de la encuesta que desea enviar:</p>
+          <div class="col s12 m8">
+            <p class="p-blue-text flow-text">Seleccione el período para visualizar su volumen y estadísticas de consumo, oprima el botón inferior para ver los resultados del mes seleccionado:</p>
           </div>
-          <div class="input-field col s12">
-            <select id="available-surveys">
-              <option value="Encuesta de salida de empleados">Encuesta de salida de empleados</option>
-              <option value="Encuesta de calidad de ambiente laboral">Encuesta de calidad de ambiente laboral</option>
+          <div class="input-field col s12 m4">
+            <select id="months">
+              <option value="Febrero">Febrero</option>
+              <option value="Marzo">Marzo</option>
+              <option value="Abril">Abril</option>
             </select>
-            <label>Encuestas disponibles</label>
+            <label>Mes</label>
           </div>
           <div class="col s12">
-            <p class="p-blue-text flow-text">Escriba los números telefónicos a los que desea enviar la encuesta, separados por comas:</p>
+            <button type="button" class="btn waves-effect waves-light right b-orange" name="button" onclick="viewBilling();">
+              <i class="material-icons">remove_red_eye</i>
+            </button>
           </div>
-          <form class="col s12">
-            <div class="row">
-              <div class="input-field col s12">
-                <i class="material-icons prefix p-green-text">phone</i>
-                <textarea id="phones" class="materialize-textarea"></textarea>
-                <label for="phones">Números de teléfono</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col s12 center">
-                  <!--Cambiar por botón-->
-                  <a onclick="countPhones();" class="btn waves-effect waves-light p-green modal-trigger" type="submit" name="action" href="#confirm">Enviar
-                    <i class="material-icons right">send</i>
-                  </a>
-              </div>
-            </div>
-          </form>
         </div>
       </div>
     </div>
+    <div class="row" id="billing-data"></div>
   </main>
 
   <footer class="page-footer pollstr-footer wow slideInUp">
@@ -127,8 +114,10 @@
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+  <script type="text/javascript" src="static/js/pollstrChartOptions.js"></script>
   <script type="text/javascript" src="static/js/materialize.min.js"></script>
   <script type="text/javascript" src="static/js/wow.js"></script>
+  <script type="text/javascript" src="static/js/billing.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
       $('.parallax').parallax();
@@ -141,16 +130,29 @@
   </script>
 
   <script>
-    function countPhones(){
-      var phoneList = document.getElementById('phones').value
-      var cleanPhones = phoneList.replace(/-|\s/g,"");
-      var numberOfPhones = phoneList.split(/,/).length;
-      var phoneText = document.createTextNode(numberOfPhones);
-      var surveyText = document.createTextNode(document.getElementById('available-surveys').value);
-      var numberContainer = document.getElementById('phone-numbers');
-      var surveyContainer = document.getElementById('this-survey');
-      numberContainer.appendChild(phoneText);
-      surveyContainer.appendChild(surveyText);
+    function viewBilling(){
+      document.getElementById("billing-data").innerHTML = "";
+      var month = document.getElementById('months').value;
+      var container = document.getElementById('billing-data');
+      var title = document.createElement('h4');
+      var titleText = document.createTextNode('Consumo para el mes de ' + month);
+      var canvas = document.createElement('canvas');
+      canvas.id = 'consumo';
+      canvas.height = '75';
+      container.classList.add('card-panel', 'center');
+      container.appendChild(title);
+      title.appendChild(titleText);
+      title.classList.add('b-orange-text');
+      container.appendChild(canvas);
+      if (month == 'Febrero'){
+        billingFebrero();
+      }
+      else if (month == 'Marzo') {
+        billingMarzo();
+      }
+      else if (month == 'Abril') {
+        billingAbril();
+      }
     }
   </script>
 
