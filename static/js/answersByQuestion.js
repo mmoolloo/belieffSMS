@@ -4,7 +4,7 @@ var barChart = new Chart(ctx, {
     data: {
         labels: ["1","2","3","4"],
         datasets: [{
-            label: 'Keywords',
+            label: 'Número de respuestas',
             data: [360, 240, 206, 102],
             backgroundColor: pollstrChartColors(nonOverlappingOpacity),
             borderColor: pollstrChartColors(1),
