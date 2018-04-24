@@ -149,6 +149,8 @@
       var surveyText = document.createTextNode(document.getElementById('available-surveys').value);
       var numberContainer = document.getElementById('phone-numbers');
       var surveyContainer = document.getElementById('this-survey');
+      numberContainer.innerHTML = "";
+      surveyContainer.innerHTML = "";
       numberContainer.appendChild(phoneText);
       surveyContainer.appendChild(surveyText);
     }
