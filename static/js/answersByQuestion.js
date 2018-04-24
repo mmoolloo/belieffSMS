@@ -2,7 +2,7 @@ var ctx = document.getElementById("barChart").getContext('2d');
 var barChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["1","2","3","4"],
+        labels: ["Pregunta 1","Pregunta 2","Pregunta 3","Pregunta 4"],
         datasets: [{
             label: 'Número de respuestas',
             data: [360, 240, 206, 102],
