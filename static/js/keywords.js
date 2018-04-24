@@ -21,7 +21,11 @@ var barChart = new Chart(ctx, {
           xAxes: [{
               ticks: {
                   beginAtZero:true
-              }
+              },
+              scaleLabel: {
+							display: true,
+							labelString: 'Repeticiones'
+						  }
           }],
             yAxes: [{
                 ticks: {
