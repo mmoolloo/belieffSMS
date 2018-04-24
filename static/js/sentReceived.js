@@ -48,25 +48,3 @@ var lineChart = new Chart(ctx, {
     data: lineData,
     options: lineOptions
 });
-
-//function toggleChart(button) {
-//  if (chartType == 'line') {
-//    chartType = 'bar';
-//  } else if (chartType == 'bar') {
-//    chartType = 'line';
-//  }
-//  console.log(chartType);
-//  lineChart.update();
-//}
-//function toggleChart(button) {
-//  console.log(config.type)
-//}
-document.getElementById('chartTypeChange').onclick = function() {
-  console.log('Hello');
-  lineChart.destroy();
-  lineChart = new Chart(ctx, {
-    type: 'bar',
-    data: lineData,
-    options: lineOptions
-  });
-};
