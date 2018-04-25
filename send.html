@@ -48,18 +48,16 @@
             <label>Encuestas disponibles</label>
           </div>
           <div class="col s12">
-            <p class="p-blue-text flow-text">Escriba los números telefónicos a los que desea enviar la encuesta, separados por comas:</p>
+            <p class="grey-text text-darken-2 flow-text">Escriba la lista de números telefónicos a los que quiera enviar la encuesta. Los números deben estar en líneas separadas (presione la tecla Enter después de cada número). También puede copiar y pegar una columna de Excel que solamente contenga números telefónicos.</p>
           </div>
           <form class="col s12">
             <div class="row">
-              <div class="input-field col s12">
+              <div class="input-field col s12 m6">
                 <i class="material-icons prefix p-green-text">phone</i>
                 <textarea id="phones" class="materialize-textarea"></textarea>
                 <label for="phones">Números de teléfono</label>
               </div>
-            </div>
-            <div class="row">
-              <div class="col s12 center">
+              <div class="col s12 m6 center">
                   <!--Cambiar por botón-->
                   <a onclick="countPhones();" class="btn waves-effect waves-light p-green modal-trigger" type="submit" name="action" href="#confirm">Enviar
                     <i class="material-icons right">send</i>
@@ -143,7 +141,7 @@
     function countPhones(){
       var phoneList = document.getElementById('phones').value
       var cleanPhones = phoneList.replace(/-|\s/g,"");
-      var numberOfPhones = phoneList.split(/,/).length;
+      var numberOfPhones = phoneList.split("\n").length;
       var phoneText = document.createTextNode(numberOfPhones);
       var surveyText = document.createTextNode(document.getElementById('available-surveys').value);
       var numberContainer = document.getElementById('phone-numbers');
